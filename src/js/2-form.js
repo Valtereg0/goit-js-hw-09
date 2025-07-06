@@ -30,6 +30,9 @@ function populateDataSave() {
         const dataParce = JSON.parse(dataSave);
         form.elements.email.value = dataParce.email || "";
         form.elements.message.value = dataParce.message || "";
+        
+        formData.email = dataParce.email || "";
+        formData.message = dataParce.message || "";
     } 
 };
 
@@ -41,10 +44,14 @@ function handleSubmit(event) {
 
     if (!email || !message) {
         alert("Fill please all fields");
-    }
+        return;
+    } 
     
     console.log({email, message});
 
     event.currentTarget.reset();
     localStorage.removeItem(storageKey);
+
+    formData.email = "";
+    formData.message = "";
 }
